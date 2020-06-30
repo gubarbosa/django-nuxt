@@ -24,11 +24,19 @@
           General
         </p>
         <ul class="menu-list">
-          <li v-for="(item, key) of items" :key="key">
+          <li v-for="(item, key) of globalItems" :key="key">
             <nuxt-link :to="item.to" exact-active-class="is-active">
               <b-icon :icon="item.icon" /> {{ item.title }}
             </nuxt-link>
           </li>
+          <span v-if="loggedIn">
+            <li v-for="(item, key) of authenticatedItems" :key="key">
+              <nuxt-link :to="item.to" exact-active-class="is-active">
+                <b-icon :icon="item.icon" />
+                {{ item.title }}
+              </nuxt-link>
+            </li>
+          </span>
         </ul>
       </aside>
 
@@ -40,17 +48,28 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      items: [
+      globalItems: [
         {
           title: 'Home',
           icon: 'home',
           to: { name: 'index' },
         },
       ],
+      authenticatedItems: [
+        {
+          title: 'Sair',
+          icon: 'logout',
+          to: { name: 'logout' },
+        },
+      ],
     }
+  },
+  computed: {
+    ...mapState('auth', ['loggedIn']),
   },
 }
 </script>
