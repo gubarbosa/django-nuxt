@@ -7,6 +7,20 @@
     "_name": "_241754e6"
   },
   {
+    "name": "login",
+    "path": "/login",
+    "component": "/home/gustavo/Documentos/django-nuxt-project/frontend/pages/login.vue",
+    "chunkName": "pages/login",
+    "_name": "_55050548"
+  },
+  {
+    "name": "logout",
+    "path": "/logout",
+    "component": "/home/gustavo/Documentos/django-nuxt-project/frontend/pages/logout.vue",
+    "chunkName": "pages/logout",
+    "_name": "_274336a7"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/home/gustavo/Documentos/django-nuxt-project/frontend/pages/index.vue",
