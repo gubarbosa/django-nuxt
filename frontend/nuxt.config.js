@@ -55,12 +55,63 @@ export default {
     'nuxt-buefy',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    '@nuxtjs/toast'
   ],
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/api/token/',
+            method: 'post',
+            propertyName: 'access',
+            altProperty: 'refresh'
+          },
+          logout: {},
+          user: false
+        }
+      }
+    },
+    redirect: {
+      login: '/login',
+    },
+  },
+  router : {
+    middleware: ['auth']
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:8000'
+  },
+  toast: {
+    position: 'top-center',
+    iconPack: 'frontawesome',
+    duration: 3000,
+    register: [
+      {
+        name: 'defaultSuccess',
+        message: (payload) =>
+          !payload.msg ? 'Operação bem sucedida' : payload.msg,
+        options: {
+          type: 'success',
+          icon: 'check'
+        }
+      },
+      {
+        name: 'defaultError',
+        message: (payload) =>
+          !payload.msg ? 'Oops.. Erro inesperado' :payload.msg, 
+        options: {
+          type: 'error',
+          icon: 'times'
+        }
+      }
+    ]
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
