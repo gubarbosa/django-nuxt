@@ -8,7 +8,7 @@ from backend.core.serializers import QuestionSerializer
 
 class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all()
-    seralizer_class = QuestionSerializer
+    serializer_class = QuestionSerializer
 
     @action(detail=False,url_path="current", methods=["GET"])
     def current_pools(self,request):
