@@ -30,7 +30,7 @@ class QuestionSerializer(ModelSerializer):
             if "id" in choice.keys():
                 if Choice.objects.filter(id=choice["id"]).exists():
                     c = Choice.objects.get(id=choice["id"])
-                    c.choice_text = choice.get("choice_text", c.choice_text)
+                    c.choice_text = choice.get("choice", c.choices)
                     c.save()
                     keep_choices.append(c.id)
                 else:
